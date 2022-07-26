@@ -69,7 +69,7 @@
 
         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
         @can('user-delete')
-        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+        {!! Form::submit('Delete', ['class' => 'delete btn btn-danger ']) !!}
         @endcan
         {!! Form::close() !!}
       </td>
