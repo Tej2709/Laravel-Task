@@ -1,5 +1,55 @@
 @extends('layouts.app')
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#productedit").validate({
+                rules: {
+                    pname: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 20,
+                    },
+                    category: {
+                        required: true,
+                    },
+                    active: {
+                        required: true,
 
+                    },
+               
+
+
+                },
+                messages: {
+                    pname: {
+                        required: "Name  is required",
+                        minlength: "Name must be at least 2 characters",
+                        maxlength: "Name cannot be more than 20 characters"
+                    },
+
+                    category: {
+                        required: "Please select Category",
+                    },
+
+                    active: {
+                        required: "Please select Active / Non-Active ",
+                 
+                    },
+
+
+                }
+            });
+        });
+    </script>
+    <style>
+        label.error {
+            color: #dc3545;
+            font-size: 14px;
+        }
+    </style>
+</head>
 
 @section('content')
 <div class="container">
@@ -25,7 +75,7 @@
     </div>
     @endif
 
-    <form action="{{ route('products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('products.update',$product->id) }}" method="POST" enctype="multipart/form-data" id="productedit">
         @csrf
         @method('PUT')
 

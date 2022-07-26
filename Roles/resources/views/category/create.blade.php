@@ -1,5 +1,49 @@
 @extends('layouts.app')
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#categorycreateform").validate({
+                rules: {
+                    cname: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 20,
+                    },
+                   
+                    active: {
+                        required: true,
 
+                    },
+               
+
+
+                },
+                messages: {
+                    cname: {
+                        required: "Name  is required",
+                        minlength: "Name must be at least 2 characters",
+                        maxlength: "Name cannot be more than 20 characters"
+                    },
+
+                    active: {
+                        required: "Please select Active / Non-Active ",
+                 
+                    },
+
+
+                }
+            });
+        });
+    </script>
+    <style>
+        label.error {
+            color: #dc3545;
+            font-size: 14px;
+        }
+    </style>
+</head>
 
 @section('content')
 <div class="container">

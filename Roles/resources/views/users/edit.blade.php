@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
-
-@section('content')
-
 <head>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#admineditform").validate({
+            $("#editform").validate({
                 rules: {
                     name: {
                         required: true,
@@ -20,6 +17,13 @@
                         required: true,
                         email: true,
                         maxlength: 50
+                    },
+                    gender: {
+                        required: true,
+                    },
+
+                    role:{
+                        required: true,
                     },
 
 
@@ -37,9 +41,14 @@
                         email: "Email must be a valid email address",
                         maxlength: "Email cannot be more than 50 characters",
                     },
+                    
+                    gender:{
+                        required: "Please select a gender",
+                    },
 
-
-
+                    role:{
+                        required: "Please select a role",
+                    }
 
                 }
             });
@@ -52,6 +61,9 @@
         }
     </style>
 </head>
+
+@section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -75,7 +87,8 @@
     @endif
 
 
-    {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]])  !!}
+    {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id ,'id' =>'editform' ] ]) !!}
+    {!! Form::open(array('route' => 'users.store','method'=>'POST','id' => 'admincreateform' )) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
